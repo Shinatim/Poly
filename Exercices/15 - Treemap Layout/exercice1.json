@@ -4,7 +4,7 @@
 [
 
 {
-	"name": "Génie Informatique",
+	"name": "GÃ©nie Informatique",
 	"value": 100,
 	"children": [
 		{"name": "INF8808","value": 50},
@@ -15,7 +15,7 @@
 	},
 	
 {
-	"name": "Génie Mathématique",
+	"name": "GÃ©nie MathÃ©matique",
 	"value": 100,
 	"children": [
 		{"name": "MTH3400","value": 50},
@@ -26,7 +26,7 @@
 	},
 	
 	{
-	"name": "Génie Aérospatial",
+	"name": "GÃ©nie AÃ©rospatial",
 	"value": 100,
 	"children": [
 		{"name": "AER3205","value": 50},
