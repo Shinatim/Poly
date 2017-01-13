@@ -6,7 +6,8 @@ h3{margin-top: 0px;
 margin-bottom: 10px;}
 .exercices{float : left;
 margin-right: 200px;}
-.livre{display: inline-block}
+.livre{display: inline-block;
+position:fixed;}
 .chapitre{margin-bottom: 40px;}
 .HTML {display:inline-block;
 margin-right:100px;
@@ -14,4 +15,7 @@ text-align: center;
 }
 .jsFiddle {display: inline-block;
 text-align: center;
+}
+#TP4{
+	margin-right:-287.616px;
 }
