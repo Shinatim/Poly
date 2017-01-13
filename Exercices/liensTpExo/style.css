@@ -4,6 +4,9 @@ h2{margin-top: 0px;
 margin-bottom:20px;}
 h3{margin-top: 0px;
 margin-bottom: 10px;}
+.exercices{float : left;
+margin-right: 200px;}
+.livre{display: inline-block}
 .chapitre{margin-bottom: 40px;}
 .HTML {display:inline-block;
 margin-right:100px;
