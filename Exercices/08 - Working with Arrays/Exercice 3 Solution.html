@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Exercice 3 Solution </title>
+        <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+    </head>
+    <body>
+        <div class="énoncé">
+            <p> Le but de cet exercice est de réaliser des manipulations itératives sur des données. Nos données sont sous la forme d'un tableau d'objets et
+             chaque objet possède trois propriétés nommées <b>a</b>, <b>b</b> et <b>c</b> (<b>a</b> et <b>b</b> sont des entiers, <b> est un booléen</b>). <br>
+			 Le but est de rajouter une quatrième propriété dont la valeur dépendra des propriétés précédentes : </p>
+			 <ul>
+				<li> Si <i>a = 1</i>, alors <i>d = 1</i> </li>
+				<li> Si <i>a + b = 2 ou c = true</i>, alors <i>d = 2</i></li>
+				<li> Si <i>a = 2 et (a + b = 5 ou c = false)</i>, alors <i>d = 3</i></li>
+				<li> Sinon, d = 4
+			 </ul>
+			 <p> Les conditions sont à vérifier <b> dans l'ordre indiqué </b>. Ainsi, si un objet vérifie les conditions 1 et 2, d doit prendre la valeur 1.
+			 <p> Il vous est demandé de faire le travail suivant : </p>
+            <ol>
+                <li> Préciser la valeur de <b> d </b> pour chaque objet en utilisant une boucle <b><i> for </i></b></li>
+                <li> Préciser la valeur de <b> d </b> pour chaque objet en utilisant la méthode <b><i> forEach </i></b></li>
+            </ol>
+        </div>
+        <div>
+            <p> Données avec la boucle <i>for</i> : <span id="forLoop"></span> </p>
+            <p> Données avec <i>forEach</i> : <span id="forEach"></span></p>
+        </div>
+        <script>
+			// Données à utiliser
+			var dataForLoop = [{a: 1, b: 2, c: true}, {a: 0, b: 0, c: true}, {a: 2, b: 0, c: false}, { a: 2, b: 2, c: false}, { a: 0, b: 0, c: false}];
+			var dataForEach = JSON.parse(JSON.stringify(dataForLoop)); // Recopie Profonde
+
+			// Question 1
+			function processForLoop(data) {
+			    for (i = 0; i < dataForLoop.length; i++) {
+			        obj = dataForLoop[i];
+			        if (obj.a == 1) {
+			            obj.d = 1
+			        } else if (obj.a + obj.b == 2 || obj.c == true) {
+			            obj.d = 2
+			        } else if (obj.a == 2 && (obj.a + obj.b == 5 || obj.c == false)) {
+			            obj.d = 3
+			        } else {
+			            obj.d = 4
+			        }
+			    }
+			}
+
+			// Question 2
+			function processForEach(data) {
+			    dataForEach.forEach(function(obj) {
+			        if (obj.a == 1) {
+			            obj.d = 1
+			        } else if (obj.a + obj.b == 2 || obj.c == true) {
+			            obj.d = 2
+			        } else if (obj.a == 2 && (obj.a + obj.b == 5 || obj.c == false)) {
+			            obj.d = 3
+			        } else {
+			            obj.d = 4
+			        }
+			    })
+			}
+
+			// TODO : Faire les manipulations de l'énoncé
+			// Remarque : les functions modifient directement les données
+
+			// Affichage des résultats
+			processForLoop(dataForLoop);
+			processForEach(dataForEach);
+
+			d3.select("#forLoop").html(JSON.stringify(dataForLoop));
+			d3.select("#forEach").html(JSON.stringify(dataForEach));        
+		</script>
+    </body>
+</html>
