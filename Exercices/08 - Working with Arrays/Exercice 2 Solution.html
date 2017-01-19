@@ -17,13 +17,13 @@
             <ol>
                 <li> Compléter la fonction <i>intervalle</i> calculant le plus petit intervalle contenant l'ensemble des valeurs prises par la propriété <b>a</b>.</li>
                 <li> Compléter la fonction <i>objet</i> qui retourne l'objet possédant la plus grande valeur prise par <b>b</b> et sa position dans le tableau de départ.</li>
-                <li> Compléter la fonction <i>tri</i> qui classe les objets par ordre croissant par rapport à leur valeur de <b>c</b>.</li>
+                <li> Compléter la fonction <i>tri</i> qui classe les objets dans l'ordre décroissant par rapport à leur valeur de <b>c</b> puis de <b>b</b>.</li>
             </ol>
         </div>
         <div>
             <p id="intervalle"> Intervalle de a : </p>
-            <p id="objet"> Objet avec le plus petit b : </p>
-            <p id="tri"> Tri par rapport à c puis b : </p>
+            <p id="objet"> Objet avec le plus grand b : </p>
+            <p id="tri"> Tri par rapport à c puis b dans l'ordre décroissant : </p>
         </div>
         <script>
             // Données à utiliser
@@ -41,11 +41,15 @@
 			
 			// Question 2
 			function objet(d){
-			var minb = d3.max(d,function(o){return o.b});	
+			var bMax = d3.max(d,function(o){return o.b});	
 			
-			return d.filter(function(obj) {
-				return obj.b == minb;
-				});
+			// Attention, filter transforme une array en une autre array !
+			objMax = d.filter(function(obj,i) {
+				return obj.b == bMax;
+				})[0];
+				
+			indiceMax = d.indexOf(objMax);
+			return [objMax,indiceMax];
 			};
 			
 			// Question 3
@@ -59,7 +63,7 @@
             var question2 = objet(data);
 			var question3 = tri(data);
 			d3.select("#intervalle").html(d3.select("#intervalle").html() + JSON.stringify(question1));
-			d3.select("#objet").html(d3.select("#objet").html() + JSON.stringify(question2));
+			d3.select("#objet").html(d3.select("#objet").html() + JSON.stringify(question2[0])+", " + "indice : "+ question2[1]);
 			d3.select("#tri").html(d3.select("#tri").html() + JSON.stringify(question3));
 			
         </script>
