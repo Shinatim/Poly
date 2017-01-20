@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Exercice 4 </title>
+        <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
+        <style>
+            svg  {border-style: solid;
+            border-color: blue;
+			margin-left: 50px;}
+			#viewBox {margin-top:40px;}
+			path,
+			polyline,
+			polygon{
+			stroke:black;
+			stroke-width:2px;
+			fill:none;
+			}
+        </style>
+    </head>
+    <body>
+        <div class="énoncé">
+            <p> Le but de ce chapitre est d'introduire les paths de SVG permettant de réaliser des figures plus complexes que des cercles ou des carrés. </p>
+            <p> Ce quatrième exercice a pour but d'approfondir la notion de <i>path</i> en SVG, au-delà de son utilisation dans D3. <br>
+				Trois implémentations sont comparées dans cet exercice : le <i>path</i> vu entre autres dans D3, le <i>polyline</i> et le <i>polygon</i>.
+            </p>
+			<p> De plus le cube de <a href="./Exercice 2.html">l'exercice 2</a> est représenté dans le quatrième SVG de l'exercice mais est malheureusement trop grand pour la taille du SVG.
+			 Il va donc falloir redimensionner le cube pour qu'il puisse rentrer à l'intérieur de son SVG. </p>
+            <p> Il vous est demandé de faire le travail suivant :</p>
+            <ol>
+                <li> Compléter la fonction <i> polyDraw </i> permettant de formatter des coordonnées pour des éléments polyline et polygon </li>
+                <li> Compléter les SVG <i>svgPolyline</i> et <i>svgPolygon</i>. <i>svgPolyline</i> doit être identique à <i>D3</i>, <i>svgPolygon</i> doit représenter un triangle fermé </li>
+				<li> Rajouter un attribut au SVG du cube pour qu'il le redimensionne à l'échelle du SVG (ne pas modifier les attributs <i>height</i> et <i>width</i>) </li>
+			</ol>
+			<p> Ressources pour polyline et polygon : <a href="https://www.dashingd3js.com/svg-basic-shapes-and-d3js">https://www.dashingd3js.com/svg-basic-shapes-and-d3js</a>
+			(à partir de <b>Drawing Polyline &#38; Polygon SVG Basic Shapes using D3.js</b>)
+        </div>
+        <script>
+		// Données pour les trois premiers SVG
+		var trianglePoints = [
+				{x: 100, y: 120},
+				{x: 175,y: 280},
+				{x: 25,y: 280}
+				];
+
+		var dist = 200;
+		// Sommets du cubes
+		var A = {x: 0,y: 0},
+		    B = {x: 500,y: 0},
+			C = {x: 500,y: 500},
+		    D = {x: 0,y: 500},
+		    E = {x: 0 + dist,y: 0 - dist},
+		    F = {x: 500 + dist,y: 0 - dist},
+		    G = {x: 500 + dist,y: 500 - dist},
+		    H = {x: 0 + dist,y: 500 - dist};
+
+		// Paths du cube
+		var cube3D = [
+		    [A, B, C, D, A],
+		    [A, E, F, B, A],
+		    [B, F, G, C, B],
+		    [E, H, G],
+		    [D, H]
+		];
+
+		var nom = ["svgD3", "svgPolyline", "svgPolygon"];
+		// Création de 3 SVG
+		d3.select("body").selectAll("svg")
+		    .data(nom)
+		    .enter()
+		    .append("svg")
+		    .attr("id", function(d) {
+		        return d
+		    })
+		    .attr("width", 200)
+		    .attr("height", 300);
+
+		// Line pour svgD3
+		var line = d3.svg.line()
+		    .x(function(d) {
+		        return d.x;
+		    })
+		    .y(function(d) {
+		        return d.y;
+		    });
+
+		// Version path
+		d3.select("#svgD3").append("text").attr("transform", "translate(100,30)").attr("text-anchor", "middle").text("Version Path D3");
+		d3.select("#svgD3").selectAll("path")
+		    .data([trianglePoints])
+		    .enter()
+		    .append("path")
+		    .attr("d", line);
+
+		// Question 1 : équivalent du d3.svg.line() sans d3
+		// data = trianglePoints
+		var polyDraw = function(data) {
+		    s = "";
+			// A compléter...
+		    return s;
+		}
+
+		// Question 2 : avec polyline 
+		d3.select("#svgPolyline").append("text").attr("transform", "translate(100,30)").attr("text-anchor", "middle").text("Version Polyline SVG");
+		// A compléter ...
+		
+		
+		// Question 2 : avec polygon
+		d3.select("#svgPolygon").append("text").attr("transform", "translate(100,30)").attr("text-anchor", "middle").text("Version Polygon SVG");
+		// A compléter ...
+		
+		
+		// Question 3 : Rajouter un attribut à svg pour redimensionner le cube
+		d3.select("body").append("svg")
+		    .attr("id", "viewBox")
+			//. A compléter...
+		    .attr("width", 300)
+		    .attr("height", 300)
+		    .append("g")
+		    .attr("transform", "translate(100,300)")
+		    .selectAll("path")
+		    .data(cube3D)
+		    .enter()
+		    .append("path")
+		    .attr("d", line)
+		    .style("stroke-dasharray", function(d, i) {
+		        if (i > 2) return "5,5";
+		        return "none";
+		    });
+			
+		// TODO : Faire les manipulations de l'énoncé	
+							
+        </script>		
+    </body>
+</html>

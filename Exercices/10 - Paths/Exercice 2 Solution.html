@@ -30,7 +30,7 @@
 			
 			var dist = 100;
 			
-			// On va nommer les points du  cube pour plus de facilité
+			// On va nommer les sommets du  cube pour plus de facilité
 			var A = {x:0,y:0},
 				B = {x:250,y:0},
 				C = {x:250,y:250},
@@ -60,7 +60,7 @@
 				
 			d3.select(group.selectAll("circle")[0][7]).attr("fill", "grey");
 			
-			// Question 1 : Création des paths
+			// Question 1
 			var pathFront = [A,B,C,D,A];
 				
 			var pathHaut = [A,E,F,B,A];
@@ -71,12 +71,12 @@
 			
 			var pathBehind2 = [D,H];
 			
-			// Question 1 : création de la fonction line()
+			// Question 2 : création de la fonction line()
 			var line = d3.svg.line()
 						.x(function(d) {return d.x;})
 						.y(function(d) {return d.y;});
 			
-			// Question 1 : création du cube
+			// Question 2 : création du cube
 			group.selectAll("path")
 				.data([pathFront, pathHaut, pathDroit, pathBehind1, pathBehind2])
 				.enter()
@@ -84,7 +84,7 @@
 				.attr("d", line)
 				.attr("fill", "none")
 				.attr("stroke","black")
-				.attr("stroke-width", 2) // Question 2
+				.attr("stroke-width", 2) // Question 3
 				.style("stroke-dasharray", function(d,i){
 					if (i > 2) return "5,5";
 					return "none";
