@@ -27,7 +27,7 @@
         </div>
         <script>
             // Données à utiliser
-			var data = [{a:10, b:20, c:70}, {a:30, b:50, c:100}, {a:15, b:90, c:100}];
+			var data = [{a:10, b:20, c:30}, {a:200, b:50, c:80}, {a:30, b:100, c:0}, {a:40, b:110, c:100}, {a:50, b:50, c:100}];
             
 			// Question 1
             function intervalle(d){
@@ -53,9 +53,13 @@
 			};
 			
 			// Question 3
-			function tri(d){
-				return d.sort(function(a,b){return d3.descending(a.c,b.c)})
-						.sort(function(a,b){return d3.descending(a.b,b.b)})
+			function tri(d) {
+			    return d.sort(function(a, b) {
+			        if (a.c == b.c) {
+			            return d3.descending(a.b, b.b)
+			        }
+			        return d3.descending(a.c, b.c)
+			    })
 			};
 			
 			// Affichage des résultats
